@@ -1,14 +1,11 @@
-import TopBar from "./components/navigation/TopBar";
-import AboutMe from "./components/features/AboutMe";
-import ProjectView from "./components/features/ProjectView";
-import SocialsView from "./components/features/SocialsView";
-import SideBar from "./components/navigation/SideBar";
 import ErrorPage from "./pages/ErrorPage";
-import BuildInfo from "./build-info.json";
-// import Banner from "./components/ui/Banner";
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./App.css";
+import Home from "./pages/Home";
+import Blog from "./pages/Blog";
+
+// import Banner from "./components/ui/Banner";
 
 // const CACHE_DURATION_MS = 60 * 60 * 1000; // 1 whole hour
 // const CACHE_KEY = "tallenportfoliocache";
@@ -124,21 +121,23 @@ function App() {
   }
 
   return (
-    <div className="App">
-      {/*<Banner />*/}
-      <TopBar />
-      <SideBar
-        backendVersion={healthData.version}
-        frontendVersion={BuildInfo.commitShort}
-      />
-
-      <AboutMe aboutData={aboutData} />
-      <SocialsView socials={socialsData} />
-      <ProjectView projects={projectsData} />
-      <div className="footer">
-        <p>© {new Date().getFullYear()} Tallen Pelissero</p>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              healthData={healthData}
+              aboutData={aboutData}
+              socialsData={socialsData}
+              projectsData={projectsData}
+            />
+          }
+        />
+        <Route path="/blog" element={<Blog />} />
+        {/* Add more routes as needed */}
+      </Routes>
+    </Router>
   );
 }
 
