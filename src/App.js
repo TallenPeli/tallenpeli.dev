@@ -4,7 +4,7 @@ import ProjectView from "./components/features/ProjectView";
 import SocialsView from "./components/features/SocialsView";
 import SideBar from "./components/navigation/SideBar";
 import ErrorPage from "./pages/ErrorPage";
-import packageJson from "../package.json";
+import BuildInfo from "./build-info.json";
 // import Banner from "./components/ui/Banner";
 
 import { useEffect, useState } from "react";
@@ -129,7 +129,7 @@ function App() {
       <TopBar />
       <SideBar
         backendVersion={healthData.version}
-        frontendVersion={packageJson.version}
+        frontendVersion={BuildInfo.commitShort}
       />
 
       <AboutMe aboutData={aboutData} />

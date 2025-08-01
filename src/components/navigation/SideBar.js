@@ -105,7 +105,11 @@ const SideBar = ({ backendVersion, frontendVersion }) => {
         <Spacer />
         <div className="section">
           <h6 className="dim-text">Backend Version: v{backendVersion}</h6>
-          <h6 className="dim-text">Frontend Version: v{frontendVersion}</h6>
+          <a
+            href={`https://github.com/TallenPeli/home/commit/${frontendVersion}`}
+          >
+            <h6 className="dim-text">Frontend Commit: {frontendVersion}</h6>
+          </a>
         </div>
       </div>
     </div>

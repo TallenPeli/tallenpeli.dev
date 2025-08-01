@@ -16,12 +16,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node scripts/BuildInfo.js && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "cp CNAME build/CNAME && gh-pages -d build"
+    "deploy": "cp CNAME build/CNAME && node scripts/BuildInfo.js && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
