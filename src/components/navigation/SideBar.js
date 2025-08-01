@@ -9,7 +9,6 @@ import {
   FiLayers,
   FiMousePointer,
   FiPhone,
-  FiInfo,
 } from "react-icons/fi";
 import "../../styles/components/navigation/SideBar.css";
 import IconUrl from "../ui/IconUrl";
@@ -25,7 +24,7 @@ const SideBar = ({ backendVersion, frontendVersion }) => {
           <Line />
           <IconUrl
             iconSide="left"
-            url="https://blog.tallenpeli.dev"
+            url="/#/blog"
             title="Blog"
             icon={<FiCoffee />}
           />

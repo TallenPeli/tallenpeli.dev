@@ -32,7 +32,7 @@ const TopBar = () => {
       </button>
 
       <div className="top-bar-icons">
-        <IconUrl title="Blog" url="/blog" icon={<FiCoffee />} />
+        <IconUrl title="Blog" url="/#/blog" icon={<FiCoffee />} />
         <IconUrl
           title="Contact me"
           url="mailto:mail@tallenpeli.dev" // a very cool email address

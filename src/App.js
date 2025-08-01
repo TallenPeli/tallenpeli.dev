@@ -1,5 +1,5 @@
 import ErrorPage from "./pages/ErrorPage";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./App.css";
 import Home from "./pages/Home";
@@ -135,7 +135,6 @@ function App() {
           }
         />
         <Route path="/blog" element={<Blog />} />
-        {/* Add more routes as needed */}
       </Routes>
     </Router>
   );
