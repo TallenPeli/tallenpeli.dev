@@ -1,6 +1,6 @@
-import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import { FiUser } from "react-icons/fi";
-import SocialCard from "./SocialCard";
+import { FiArrowLeft, FiUser, FiArrowRight } from "react-icons/fi";
+import SocialCard from "../ui/SocialCard";
+import "./SocialsView.css";
 
 function ScrollToSide(direction) {
   const scrollContainer = document.querySelector(".socials-view-scroller");
@@ -24,23 +24,24 @@ export default function SocialsView({ socials }) {
     // SocialCard Carousel
     <div className="socials-view-container">
       <div className="view-header">
-        <h1>Socials</h1>
+        <h1>Platforms</h1>
         <FiUser className="socials-view-icon" size={32} />
       </div>
-      <div className="socials-view-scroller">
-        <FaAngleRight size={48} onClick={() => ScrollToSide("right")} />
-        {socials.map((social) => (
-          <SocialCard
-            key={social.platformName}
-            image={social.image}
-            alt={social.alt}
-            link={social.link}
-            username={social.username}
-            platformName={social.platformName}
-            cardColor={social.cardColor}
-          />
-        ))}
-        <FaAngleLeft size={48} onClick={() => ScrollToSide("left")} />
+      <div className="view-content">
+        <FiArrowLeft size={48} onClick={() => ScrollToSide("left")} />
+        <div className="socials-view-scroller">
+          {socials.map((social) => (
+            <SocialCard
+              key={social.platformName}
+              image={social.image}
+              alt={social.alt}
+              link={social.link}
+              username={social.username}
+              platformName={social.platformName}
+            />
+          ))}
+        </div>
+        <FiArrowRight size={48} onClick={() => ScrollToSide("right")} />
       </div>
     </div>
   );

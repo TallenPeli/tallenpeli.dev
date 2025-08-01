@@ -1,0 +1,34 @@
+.top-bar {
+    z-index: 1;
+    background-color: var(--background-color);
+    color: var(--accent-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    padding: 1rem;
+    border: none;
+}
+
+.top-bar-icons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.side-bar-toggle {
+    left: 1rem;
+    top: 1rem;
+    position: fixed;
+    z-index: 11;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--accent-color);
+    transition: all 0.4s var(--animation-curve);
+}
+
+.side-bar-toggle.active {
+    transform: rotate(180deg);
+    left: 1.5rem;
+    top: 1.1rem;
+}

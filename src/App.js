@@ -4,6 +4,8 @@ import ProjectView from "./components/features/ProjectView";
 import SocialsView from "./components/features/SocialsView";
 import SideBar from "./components/navigation/SideBar";
 import ErrorPage from "./pages/ErrorPage";
+import packageJson from "../package.json";
+// import Banner from "./components/ui/Banner";
 
 import { useEffect, useState } from "react";
 import "./App.css";
@@ -54,6 +56,7 @@ function App() {
   const [aboutData, setAboutData] = useState(null);
   const [socialsData, setSocialsData] = useState([]);
   const [projectsData, setProjectsData] = useState([]);
+  const [healthData, setHealthData] = useState({ status: "no response" });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -73,44 +76,61 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [aboutRes, socialsRes, projectsRes] = await Promise.all([
-          fetch(`${API_ENDPOINT}/about`),
-          fetch(`${API_ENDPOINT}/socials`),
-          fetch(`${API_ENDPOINT}/projects`),
-        ]);
+        const [aboutRes, socialsRes, projectsRes, healthRes] =
+          await Promise.all([
+            fetch(`${API_ENDPOINT}/about`),
+            fetch(`${API_ENDPOINT}/socials`),
+            fetch(`${API_ENDPOINT}/projects`),
+            fetch(`${API_ENDPOINT}/health`),
+          ]);
 
-        const [aboutJson, socialsJson, projectsJson] = await Promise.all([
-          aboutRes.json(),
-          socialsRes.json(),
-          projectsRes.json(),
-        ]);
+        const [aboutJson, socialsJson, projectsJson, healthJson] =
+          await Promise.all([
+            aboutRes.json(),
+            socialsRes.json(),
+            projectsRes.json(),
+            healthRes.json(),
+          ]);
 
         if (aboutJson.success) setAboutData(aboutJson.data);
         if (socialsJson.success) setSocialsData(socialsJson.data);
         if (projectsJson.success) setProjectsData(projectsJson.data);
+        setHealthData(healthJson);
       } catch (error) {
         setError(error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (loading) {
+    return (
+      <div className="loading-page">
+        <div className="loading-shape"></div>
+        <span className="accent-text">Loading</span>
+      </div>
+    );
+  }
+
+  if (healthData.status !== "ok") {
+    return <ErrorPage error={null} healthData={healthData} />;
+  }
 
   if (error) {
     console.error("Error fetching data:", error);
-    return <ErrorPage error={error} />;
+    return <ErrorPage error={error} healthData={healthData} />;
   }
 
   return (
     <div className="App">
+      {/*<Banner />*/}
       <TopBar />
-      <SideBar />
+      <SideBar
+        backendVersion={healthData.version}
+        frontendVersion={packageJson.version}
+      />
 
       <AboutMe aboutData={aboutData} />
       <SocialsView socials={socialsData} />

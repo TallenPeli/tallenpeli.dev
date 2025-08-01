@@ -1,29 +1,34 @@
-import React from "react";
-import { FiGithub, FiSidebar, FiMail, FiCoffee } from "react-icons/fi";
-
-const IconUrl = ({ title, url, icon }) => {
-  return (
-    <a href={url} className="icon-url">
-      <p>{title}</p>
-      {icon}
-    </a>
-  );
-};
+import { FiGithub, FiMenu, FiMail, FiCoffee } from "react-icons/fi";
+import IconUrl from "../ui/IconUrl";
+import "../../styles/components/navigation/TopBar.css";
 
 function toggleSidebar() {
   const sidebar = document.getElementById("sidebar");
-  if (sidebar.style.display === "none") {
-    sidebar.style.display = "block";
+  const sidebarButton = document.getElementById("side-bar-toggle");
+  if (!sidebar || !sidebarButton) return;
+
+  if (!sidebarButton.classList.contains("active")) {
+    sidebarButton.classList.add("active");
   } else {
-    sidebar.style.display = "none";
+    sidebarButton.classList.remove("active");
+  }
+
+  if (!sidebar.classList.contains("open")) {
+    sidebar.classList.add("open");
+  } else {
+    sidebar.classList.remove("open");
   }
 }
 
 const TopBar = () => {
   return (
     <div className="top-bar">
-      <button className="side-bar-toggle" onClick={toggleSidebar}>
-        <FiSidebar size={25} />
+      <button
+        className="side-bar-toggle"
+        id="side-bar-toggle"
+        onClick={toggleSidebar}
+      >
+        <FiMenu size={25} />
       </button>
 
       <div className="top-bar-icons">

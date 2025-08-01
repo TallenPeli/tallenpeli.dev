@@ -1,6 +1,7 @@
 import { FaChevronDown } from "react-icons/fa";
 import "./AboutMe.css";
 import Tag from "../ui/Tag";
+import { FiArrowDown } from "react-icons/fi";
 
 const ScrollDown = (elementID) => {
   const targetElement = document.getElementById(elementID);
@@ -13,16 +14,18 @@ const AboutMe = ({ aboutData }) => {
   return (
     <div id="about-me" className="about-me" style={{ position: "relative" }}>
       <div className="content">
-        <div className="right">
-          <div className="avatar-container">
-            <div className="double-sided-image">
-              <img
-                src={aboutData.avatarURL}
-                className="avatar-image"
-                alt="Avatar"
-              />
-            </div>
-          </div>
+        <div className="double-sided-image">
+          <img
+            src={aboutData.avatarURL}
+            className="avatar-front"
+            alt="Avatar"
+          />
+          <img
+            src={aboutData.avatarBackURL}
+            className="avatar-back"
+            alt="Avatar2"
+            style={{ transform: "rotateY(180deg)" }}
+          />
         </div>
         <h1 className="name-container">
           <span>{aboutData.firstName}</span>
@@ -42,7 +45,7 @@ const AboutMe = ({ aboutData }) => {
       >
         <span className="accent-text">View Projects</span>
         <div className="scroll-down-button">
-          <FaChevronDown size={12} />
+          <FiArrowDown />
         </div>
       </div>
     </div>

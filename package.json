@@ -1,6 +1,6 @@
 {
   "name": "home",
-  "version": "0.1.0",
+  "version": "0.1.1-dev",
   "private": true,
   "homepage": "https://tallenpeli.dev",
   "dependencies": {
@@ -21,7 +21,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "cp CNAME build/CNAME && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
