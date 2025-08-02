@@ -1,5 +1,4 @@
-import { FaChevronDown } from "react-icons/fa";
-import "./AboutMe.css";
+import "../../styles/components/features/AboutMe.css";
 import Tag from "../ui/Tag";
 import { FiArrowDown } from "react-icons/fi";
 

@@ -2,6 +2,8 @@ import { MdOpenInNew } from "react-icons/md";
 import { FiGithub, FiCode } from "react-icons/fi";
 import IconUrl from "../ui/IconUrl";
 
+import "../../styles/components/features/ProjectCard.css";
+
 export default function ProjectCard({ project }) {
   const { title, description, image, platform, url, type } = project;
 

@@ -1,0 +1,117 @@
+.blog-preview-card {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    background: var(--background-color);
+    transition: box-shadow 0.2s ease;
+    transition: transform 0.2s ease;
+}
+
+.blogs .blog-preview-card {
+    flex-direction: column;
+}
+
+.blogs .blog-preview-card .thumbnail {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.blog-preview-card:hover {
+    transform: scale(1.02);
+}
+
+.thumbnail {
+    width: 40%;
+    aspect-ratio: 3/2;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: var(--background-alt-color);
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content h2 {
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem 0;
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.content h2 .id {
+    font-size: 1rem;
+    color: var(--text-dim);
+    font-weight: normal;
+}
+
+.information {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+}
+
+.excerpt {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+}
+
+.meta {
+    font-size: 0.875rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.author {
+    font-weight: 500;
+    color: var(--text-dim);
+}
+
+.views {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.likes {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 640px) {
+    .blog-preview-card {
+        flex-direction: column;
+    }
+
+    .thumbnail {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+}

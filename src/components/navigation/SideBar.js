@@ -9,6 +9,7 @@ import {
   FiLayers,
   FiMousePointer,
   FiPhone,
+  FiHome,
 } from "react-icons/fi";
 import "../../styles/components/navigation/SideBar.css";
 import IconUrl from "../ui/IconUrl";
@@ -22,6 +23,7 @@ const SideBar = ({ backendVersion, frontendVersion }) => {
         <div className="section">
           <span className="accent-text">Links</span>
           <Line />
+          <IconUrl iconSide="left" url="/" title="Home" icon={<FiHome />} />
           <IconUrl
             iconSide="left"
             url="/#/blog"

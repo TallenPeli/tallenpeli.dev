@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     font-family:
-        JetBrains Mono,
+        Mozilla Text,
         monospace;
 
     --animation-speed: 0.2s;
@@ -19,7 +19,7 @@
     --text-color: #e6ffed;
     --text-dim: #9b9;
 
-    /* border: 1px solid red; */
+    /*border: 1px solid red;*/
     --border-radius: 1rem;
 
     /* Foreground Colors */
@@ -77,72 +77,6 @@ a {
     font-size: 2vw;
     font-weight: 100;
     margin-bottom: 1.5rem;
-}
-
-.project-card {
-    border-radius: 1rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    padding: 1rem;
-    color: #fff;
-    cursor: pointer;
-    max-width: 100%;
-    min-width: 20rem;
-    transition: transform 0.1s ease-in-out;
-}
-
-.project-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
-}
-
-.project-card .github {
-    background-color: #212322;
-    color: #a2ffbe;
-}
-
-.project-card .itchio {
-    background-color: #252121;
-    color: #ffa2a2;
-}
-
-.project-card .thingiverse {
-    background-color: #1c1d23;
-    color: #a2b6ff;
-}
-
-.project-card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.project-card .header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    color: var(--accent-color);
-}
-
-.project-card .footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    color: var(--accent-color);
-    padding: 0rem;
-}
-
-.project-card .image {
-    height: 100%;
-    width: 100%;
-}
-
-.project-card .spaced {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 }
 
 .socials-view-container {
@@ -214,16 +148,6 @@ a {
 
 .socials-view-scroller::-webkit-scrollbar {
     display: none;
-}
-
-.footer {
-    color: var(--text-dim);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
 }
 
 .error-page {

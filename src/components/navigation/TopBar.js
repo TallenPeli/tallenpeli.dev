@@ -1,5 +1,6 @@
 import { FiGithub, FiMenu, FiMail, FiCoffee } from "react-icons/fi";
 import IconUrl from "../ui/IconUrl";
+import SideBar from "./SideBar";
 import "../../styles/components/navigation/TopBar.css";
 
 function toggleSidebar() {
@@ -20,7 +21,7 @@ function toggleSidebar() {
   }
 }
 
-const TopBar = () => {
+const TopBar = ({ items }) => {
   return (
     <div className="top-bar">
       <button
@@ -30,19 +31,15 @@ const TopBar = () => {
       >
         <FiMenu size={25} />
       </button>
-
       <div className="top-bar-icons">
-        <IconUrl title="Blog" url="/#/blog" icon={<FiCoffee />} />
-        <IconUrl
-          title="Contact me"
-          url="mailto:mail@tallenpeli.dev" // a very cool email address
-          icon={<FiMail />}
-        />
-        <IconUrl
-          title="Github"
-          url="https://github.com/TallenPeli"
-          icon={<FiGithub />}
-        />
+        {items.map((item) => (
+          <IconUrl
+            key={item.title}
+            title={item.title}
+            url={item.url}
+            icon={item.icon}
+          />
+        ))}
       </div>
     </div>
   );
