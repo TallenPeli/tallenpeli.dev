@@ -7,7 +7,7 @@ import Banner from "./components/ui/Banner";
 // import Banner from "./components/ui/Banner";
 
 const API_ENDPOINT =
-  process.env.NODE_ENV !== "production"
+  process.env.NODE_ENV === "production"
     ? "https://api.tallenpeli.dev"
     : "http://192.168.68.66:8080";
 
