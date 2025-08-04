@@ -1,5 +1,4 @@
 import { FiExternalLink } from "react-icons/fi";
-import { MdOpenInNew } from "react-icons/md";
 import "../../styles/components/features/SocialCard.css";
 import Line from "./Line";
 

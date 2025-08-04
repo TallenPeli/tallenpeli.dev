@@ -1,0 +1,114 @@
+.BlogPost {
+    min-height: 100vh;
+    width: 100%;
+    background-color: var(--background-color);
+
+    .view {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: initial;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem;
+        width: 50rem;
+        max-width: 100%;
+    }
+
+    .thumbnail {
+        aspect-ratio: 3/1;
+        object-fit: cover;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .title {
+        color: var(--accent-color);
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+
+    .details {
+        color: var(--text-dim);
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .feedback {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .feedback-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        width: 50%;
+        background-color: transparent;
+        border: none;
+        font-size: 1rem;
+        font-weight: bold;
+        padding: 1rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition:
+            background 0.3s ease,
+            color 0.3s ease;
+    }
+
+    .feedback-button.like {
+        border-left: 10px solid var(--accent-color);
+        color: var(--accent-color);
+        background: linear-gradient(
+                to left,
+                var(--background-color) 50%,
+                var(--accent-color) 50%
+            )
+            right;
+        background-size: 200%;
+    }
+
+    .feedback-button.dislike {
+        border-left: 10px solid var(--red);
+        color: var(--red);
+        background: linear-gradient(
+                to left,
+                var(--background-color) 50%,
+                var(--red) 50%
+            )
+            right;
+        background-size: 200%;
+    }
+
+    .feedback-button:hover {
+        color: var(--background-color);
+        background-position: left;
+    }
+
+    @media (max-width: 768px) {
+        .feedback {
+            flex-direction: column;
+        }
+        .feedback-button {
+            width: 100%;
+        }
+    }
+}

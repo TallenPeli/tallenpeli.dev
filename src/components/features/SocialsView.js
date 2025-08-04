@@ -1,7 +1,6 @@
 import { FiArrowLeft, FiUser, FiArrowRight } from "react-icons/fi";
 import SocialCard from "../ui/SocialCard";
-import "./SocialsView.css";
-
+import "../../styles/components/features/SocialsView.css";
 function ScrollToSide(direction) {
   const scrollContainer = document.querySelector(".socials-view-scroller");
   if (!scrollContainer) return;

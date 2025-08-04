@@ -27,6 +27,7 @@ const Home = ({ API_ENDPOINT }) => {
   const [socialsData, setSocialsData] = useState([]);
   const [projectsData, setProjectsData] = useState([]);
   const [healthData, setHealthData] = useState({ status: "no response" });
+  const [blogpostsData, setBlogpostsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -46,25 +47,33 @@ const Home = ({ API_ENDPOINT }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [aboutRes, socialsRes, projectsRes, healthRes] =
+        const [aboutRes, socialsRes, projectsRes, healthRes, blogpostsRes] =
           await Promise.all([
             fetch(`${API_ENDPOINT}/about`),
             fetch(`${API_ENDPOINT}/socials`),
             fetch(`${API_ENDPOINT}/projects`),
             fetch(`${API_ENDPOINT}/health`),
+            fetch(`${API_ENDPOINT}/blogposts?limit=4`),
           ]);
 
-        const [aboutJson, socialsJson, projectsJson, healthJson] =
-          await Promise.all([
-            aboutRes.json(),
-            socialsRes.json(),
-            projectsRes.json(),
-            healthRes.json(),
-          ]);
+        const [
+          aboutJson,
+          socialsJson,
+          projectsJson,
+          healthJson,
+          blogpostsJson,
+        ] = await Promise.all([
+          aboutRes.json(),
+          socialsRes.json(),
+          projectsRes.json(),
+          healthRes.json(),
+          blogpostsRes.json(),
+        ]);
 
         if (aboutJson.success) setAboutData(aboutJson.data);
         if (socialsJson.success) setSocialsData(socialsJson.data);
         if (projectsJson.success) setProjectsData(projectsJson.data);
+        if (blogpostsJson.success) setBlogpostsData(blogpostsJson.data);
         setHealthData(healthJson);
       } catch (error) {
         setError(error);
@@ -73,7 +82,7 @@ const Home = ({ API_ENDPOINT }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [API_ENDPOINT]);
 
   if (loading) {
     return (
@@ -113,17 +122,15 @@ const Home = ({ API_ENDPOINT }) => {
 
   return (
     <div className="Home">
-      {/*<Banner />*/}
       <TopBar items={TopBarItems} />
       <SideBar
-        backendVersion={healthData.version}
+        backendVersion={healthData?.version}
         frontendVersion={BuildInfo.commitShort}
       />
-
       <AboutMe aboutData={aboutData} />
-      <SocialsView socials={socialsData} />
-      <ProjectView projects={projectsData} />
-      <BlogView />
+      <SocialsView socials={socialsData || []} />
+      <ProjectView projects={projectsData || []} />
+      <BlogView blogposts={blogpostsData || []} />
       <PageFooter />
     </div>
   );

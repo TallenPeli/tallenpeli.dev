@@ -1,4 +1,4 @@
-import { FiEye, FiHeart } from "react-icons/fi";
+import { FiEye, FiThumbsUp } from "react-icons/fi";
 import "../../styles/components/features/BlogCard.css";
 
 const BigBlogCard = ({ blog }) => {
@@ -18,8 +18,8 @@ const BigBlogCard = ({ blog }) => {
           <div className="views">
             <FiEye /> {blog.views}
           </div>
-          <div className="likes">
-            <FiHeart /> {blog.upvotes}
+          <div className="helpful">
+            <FiThumbsUp /> {blog.helpful}%
           </div>
         </div>
         <p className="excerpt">{blog.description}</p>

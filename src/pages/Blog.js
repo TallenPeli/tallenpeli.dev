@@ -46,7 +46,7 @@ const Blog = ({ API_ENDPOINT }) => {
       }
     };
     fetchData();
-  }, []);
+  }, [API_ENDPOINT]);
 
   if (loading) {
     return (
@@ -84,6 +84,10 @@ const Blog = ({ API_ENDPOINT }) => {
     },
   ];
 
+  const LoadBlog = (id) => {
+    console.log("LoadBlog called with id:", id);
+  };
+
   return (
     // Map the blogpost data into divs
     <div className="Blog">
@@ -98,7 +102,11 @@ const Blog = ({ API_ENDPOINT }) => {
           <div className="latest-post">
             <h1 className="header">Latest Post</h1>
             {latestBlogPost && (
-              <BlogCard key={latestBlogPost.id} blog={latestBlogPost} />
+              <BlogCard
+                key={latestBlogPost.id}
+                blog={latestBlogPost}
+                LoadBlog={LoadBlog}
+              />
             )}
           </div>
           <br />
@@ -106,7 +114,7 @@ const Blog = ({ API_ENDPOINT }) => {
           <h1 className="header">More Posts</h1>
           <div className="blogs">
             {blogpostData.map((blog) => (
-              <BlogCard key={blog.id} blog={blog} />
+              <BlogCard key={blog.id} blog={blog} LoadBlog={LoadBlog} />
             ))}
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { FaFlag, FaCircleInfo } from "react-icons/fa6";
+import { FaCircleInfo } from "react-icons/fa6";
 
 function toggleActive(element) {
   element.classList.toggle("active");

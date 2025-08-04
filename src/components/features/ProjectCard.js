@@ -5,7 +5,7 @@ import IconUrl from "../ui/IconUrl";
 import "../../styles/components/features/ProjectCard.css";
 
 export default function ProjectCard({ project }) {
-  const { title, description, image, platform, url, type } = project;
+  const { title, description, platform, url, type } = project;
 
   return (
     <div
