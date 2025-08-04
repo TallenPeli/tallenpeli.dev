@@ -30,6 +30,9 @@
         border-style: solid;
         gap: 2rem;
         overflow-y: scroll;
+        /* hide scrollbars */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
 }
 

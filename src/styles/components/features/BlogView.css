@@ -5,11 +5,7 @@
     align-items: center;
     margin: auto;
     gap: 2rem;
-    background: linear-gradient(
-        to bottom,
-        var(--background-color),
-        var(--accent-dark)
-    );
+    background-color: var(--background-color);
     padding-top: 2rem;
     padding-bottom: 2rem;
 

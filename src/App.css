@@ -5,6 +5,22 @@
         Mozilla Text,
         monospace;
 
+    /* Fix chrome scrollers */
+    scrollbar-color: var(--accent-color) var(--background-color);
+
+    .scroller::-webkit-scrollbar {
+        width: 4px; /* Sets the scrollbar width to 8 pixels */
+    }
+
+    .scroller::-webkit-scrollbar-track {
+        background: var(--accent-color);
+    }
+
+    .scroller::-webkit-scrollbar-thumb {
+        background: red;
+        border-radius: 4px;
+    }
+
     --animation-speed: 0.2s;
     --animation-curve: cubic-bezier(0.77, 0, 0.175, 1);
 
