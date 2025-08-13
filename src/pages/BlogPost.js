@@ -19,16 +19,70 @@ import Line from "../components/ui/Line";
 import PageFooter from "../components/ui/PageFooter";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import BigBlogCard from "../components/features/BlogCard";
+import BlogView from "../components/features/BlogView";
+import ErrorPage from "./ErrorPage";
 
-const BlogPost = ({ API_ENDPOINT }) => {
+function feedbackMessage(success) {
+  const feedbackElement = document.getElementsByClassName("feedback")[0];
+  if (success) {
+    feedbackElement.innerHTML = "<h3>Thanks for your feedback!</h3>";
+  } else {
+    feedbackElement.innerHTML = "<h3>Thanks for your feedback! (again)</h3>";
+  }
+}
+
+async function likePost(postId, API_ENDPOINT, TOKEN) {
+  try {
+    const response = await fetch(`${API_ENDPOINT}/blogpost/like?id=${postId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `${TOKEN}`,
+      },
+    });
+
+    feedbackMessage(response.ok);
+  } catch (error) {
+    console.error("Error liking post:", error);
+  }
+}
+
+async function dislikePost(postId, API_ENDPOINT, TOKEN) {
+  try {
+    const response = await fetch(
+      `${API_ENDPOINT}/blogpost/dislike?id=${postId}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${TOKEN}`,
+        },
+      },
+    );
+
+    feedbackMessage(response.ok);
+  } catch (error) {
+    console.error("Error disliking post:", error);
+  }
+}
+
+async function viewPost(postId, API_ENDPOINT, TOKEN) {
+  fetch(`${API_ENDPOINT}/blogpost/view?id=${postId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${TOKEN}`,
+    },
+  });
+}
+
+const BlogPost = ({ API_ENDPOINT, TOKEN }) => {
   const { id } = useParams(); // This gets the {id} from the URL
   const [blog, setBlog] = useState(null);
-
-  useEffect(() => {
-    fetch(`${API_ENDPOINT}/blogpost?id=${id}`)
-      .then((res) => res.json())
-      .then((data) => setBlog(data.data));
-  }, [id, API_ENDPOINT]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [healthData, setHealthData] = useState({ status: "loading" });
 
   const TopBarItems = [
     {
@@ -43,7 +97,7 @@ const BlogPost = ({ API_ENDPOINT }) => {
     },
     {
       title: "Contact me",
-      url: "mailto:mail@tallenpeli.dev", // a very cool email address
+      url: "mailto:mail@tallenpeli.dev",
       icon: <FiMail />,
     },
     {
@@ -52,6 +106,52 @@ const BlogPost = ({ API_ENDPOINT }) => {
       icon: <FiGithub />,
     },
   ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const [blogRes, healthRes] = await Promise.all([
+          fetch(`${API_ENDPOINT}/blogpost?id=${id}`),
+          fetch(`${API_ENDPOINT}/health`),
+        ]);
+
+        const [blogJson, healthJson] = await Promise.all([
+          blogRes.json(),
+          healthRes.json(),
+        ]);
+
+        if (blogJson.success) {
+          setBlog(blogJson.data);
+          viewPost(blogJson.data.id, API_ENDPOINT, TOKEN);
+        }
+        setHealthData(healthJson);
+      } catch (error) {
+        console.error(error);
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [id, API_ENDPOINT, TOKEN]);
+
+  if (loading) {
+    return (
+      <div className="loading-page">
+        <div className="loading-shape"></div>
+        <span className="accent-text">Loading</span>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <ErrorPage error={error} healthData={healthData} />;
+  }
+
+  if (healthData?.status !== "ok" && healthData?.status !== "loading") {
+    return <ErrorPage error={null} healthData={healthData} />;
+  }
 
   return (
     <div className="BlogPost">
@@ -77,16 +177,24 @@ const BlogPost = ({ API_ENDPOINT }) => {
             <Markdown remarkPlugins={[remarkGfm]}>{blog?.content}</Markdown>
           </div>
           <br />
-          <h3 className="accent-text">
-            Read the whole article? Leave some feedback!
-          </h3>
           <div className="feedback">
-            <button className="feedback-button like">
-              <FiThumbsUp />I found this helpful
-            </button>
-            <button className="feedback-button dislike">
-              <FiThumbsDown />I didn't find this helpful
-            </button>
+            <h3 className="accent-text">
+              Read the whole article? Leave some feedback!
+            </h3>
+            <div className="feedback-buttons">
+              <button
+                className="feedback-button like"
+                onClick={() => likePost(blog?.id, API_ENDPOINT, TOKEN)}
+              >
+                <FiThumbsUp />I found this helpful
+              </button>
+              <button
+                className="feedback-button dislike"
+                onClick={() => dislikePost(blog?.id, API_ENDPOINT, TOKEN)}
+              >
+                <FiThumbsDown />I didn't find this helpful
+              </button>
+            </div>
           </div>
         </div>
       </div>

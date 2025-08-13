@@ -49,11 +49,21 @@
     .feedback {
         width: 100%;
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: 1rem;
+        color: var(--accent-color);
+    }
+
+    .feedback-buttons {
+        width: 100%;
+        display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
-        padding: 1rem;
     }
 
     .feedback-button {
@@ -79,7 +89,7 @@
         color: var(--accent-color);
         background: linear-gradient(
                 to left,
-                var(--background-color) 50%,
+                var(--background-alt-color) 50%,
                 var(--accent-color) 50%
             )
             right;
@@ -91,7 +101,7 @@
         color: var(--red);
         background: linear-gradient(
                 to left,
-                var(--background-color) 50%,
+                var(--background-red) 50%,
                 var(--red) 50%
             )
             right;

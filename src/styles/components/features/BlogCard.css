@@ -8,6 +8,7 @@
     background: var(--background-color);
     transition: box-shadow 0.2s ease;
     transition: transform 0.2s ease;
+    cursor: pointer;
 }
 
 .blogs .blog-preview-card {

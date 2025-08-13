@@ -15,11 +15,6 @@ export default function SocialCard({
       <img src={image} alt={alt} className="social-card-image" />
       <h1>{platformName}</h1>
       <h5>@{username}</h5>
-      <Line />
-      <div className="account-details">
-        <div className="left">100 Followers</div>
-        <div className="right">50 Posts</div>
-      </div>
     </div>
   );
 }
