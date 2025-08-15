@@ -20,3 +20,11 @@
 .icon-url:hover::after {
     width: 100%;
 }
+
+/* Without the URL style */
+.icon {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
