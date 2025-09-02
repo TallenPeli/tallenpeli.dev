@@ -1,4 +1,3 @@
-// pages/BlogPost.js
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import TopBar from "../components/navigation/TopBar";
@@ -19,9 +18,8 @@ import Line from "../components/ui/Line";
 import PageFooter from "../components/ui/PageFooter";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import BigBlogCard from "../components/features/BlogCard";
-import BlogView from "../components/features/BlogView";
 import ErrorPage from "./ErrorPage";
+import BlogCard from "../components/features/BlogCard";
 
 function feedbackMessage(success) {
   const feedbackElement = document.getElementsByClassName("feedback")[0];
@@ -80,6 +78,7 @@ async function viewPost(postId, API_ENDPOINT, TOKEN) {
 const BlogPost = ({ API_ENDPOINT, TOKEN }) => {
   const { id } = useParams(); // This gets the {id} from the URL
   const [blog, setBlog] = useState(null);
+  const [blogPosts, setBlogPosts] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [healthData, setHealthData] = useState({ status: "loading" });
@@ -111,19 +110,24 @@ const BlogPost = ({ API_ENDPOINT, TOKEN }) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const [blogRes, healthRes] = await Promise.all([
+        const [blogRes, blogPostsRes, healthRes] = await Promise.all([
           fetch(`${API_ENDPOINT}/blogpost?id=${id}`),
+          fetch(`${API_ENDPOINT}/blogposts?limit=4`),
           fetch(`${API_ENDPOINT}/health`),
         ]);
 
-        const [blogJson, healthJson] = await Promise.all([
+        const [blogJson, blogPostsJson, healthJson] = await Promise.all([
           blogRes.json(),
+          blogPostsRes.json(),
           healthRes.json(),
         ]);
 
         if (blogJson.success) {
           setBlog(blogJson.data);
           viewPost(blogJson.data.id, API_ENDPOINT, TOKEN);
+        }
+        if (blogPostsJson.success) {
+          setBlogPosts(blogPostsJson.data);
         }
         setHealthData(healthJson);
       } catch (error) {
@@ -162,7 +166,10 @@ const BlogPost = ({ API_ENDPOINT, TOKEN }) => {
           <img src={blog?.thumbnail} alt={blog?.title} className="thumbnail" />
           <h1 className="title">{blog?.title}</h1>
           <div className="details">
-            <span>{blog?.authors.join(", ")}</span>
+            <span>
+              {blog?.authors.join(", ")} · {blog?.date}
+            </span>
+            <span>{}</span>
             <div className="information">
               <div className="views">
                 <FiEye /> {blog?.views}
@@ -178,9 +185,6 @@ const BlogPost = ({ API_ENDPOINT, TOKEN }) => {
           </div>
           <br />
           <div className="feedback">
-            <h3 className="accent-text">
-              Read the whole article? Leave some feedback!
-            </h3>
             <div className="feedback-buttons">
               <button
                 className="feedback-button like"
@@ -197,10 +201,35 @@ const BlogPost = ({ API_ENDPOINT, TOKEN }) => {
             </div>
           </div>
         </div>
+        <OhterBlogPosts blogposts={blogPosts} currentBlogId={blog?.id} />
       </div>
       <PageFooter />
     </div>
   );
 };
 
+const OhterBlogPosts = ({ blogposts, currentBlogId }) => {
+  console.log(currentBlogId);
+  if (!blogposts || blogposts.length === 0) return null;
+
+  const rows = [];
+  for (let i = 0; i < blogposts.length; i++) {
+    if (blogposts[i].id === currentBlogId) continue;
+    rows.push(
+      <div key={i} className="blog-row">
+        <BlogCard key={blogposts[i].id} blog={blogposts[i]} />
+      </div>,
+    );
+  }
+
+  return (
+    <div className="blogpost__other-posts">
+      <h1>
+        Other Posts
+        <FiCoffee />
+      </h1>
+      <div className="blogpost__blog-list">{rows}</div>
+    </div>
+  );
+};
 export default BlogPost;

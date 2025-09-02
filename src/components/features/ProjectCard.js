@@ -8,10 +8,7 @@ export default function ProjectCard({ project }) {
   const { title, description, platform, url, type } = project;
 
   return (
-    <div
-      className={`project-card ${platform}`}
-      onClick={() => window.open(url, "_blank")}
-    >
+    <div className="project-card" onClick={() => window.open(url, "_blank")}>
       <div className="project-card-content">
         <div className="header">
           <h2>

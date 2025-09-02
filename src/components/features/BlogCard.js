@@ -4,29 +4,29 @@ import "../../styles/components/features/BlogCard.css";
 const BigBlogCard = ({ blog }) => {
   return (
     <div
-      className="blog-preview-card"
+      className="blogcard__preview"
       onClick={() => (window.location.href = `#/blog/${blog.id}`)}
     >
-      <div className="thumbnail">
+      <div className="blogcard__thumbnail">
         <img src={blog.thumbnail} alt={blog.title} />
       </div>
-      <div className="content">
+      <div className="blogcard__content">
         <h2>
-          {blog.title} <span className="id">#{blog.id}</span>
+          {blog.title} <span className="blogcard__id">#{blog.id}</span>
         </h2>
-        <div className="information">
-          <div className="views">
+        <div className="blogcard__information">
+          <div className="blogcard__views">
             <FiEye /> {blog.views}
           </div>
-          <div className="helpful">
+          <div className="blogcard__helpful">
             <FiThumbsUp /> {blog.helpful}%
           </div>
         </div>
-        <p className="excerpt">{blog.description}</p>
-        <div className="meta">
-          <span className="author">{blog.authors.join(", ")}</span>
+        <p className="blogcard__excerpt">{blog.description}</p>
+        <div className="blogcard__meta">
+          <span className="blogcard__author">{blog.authors.join(", ")}</span>
           <span>·</span>
-          <span className="date">{blog.date}</span>
+          <span className="blogcard__date">{blog.date}</span>
         </div>
       </div>
     </div>

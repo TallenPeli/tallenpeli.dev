@@ -11,7 +11,7 @@ const Banner = () => {
     <div className="banner" id="banner">
       <div className="banner-content">
         <FiAlertTriangle />
-        <span>Site under construction</span>
+        <span>Site under minor construction</span>
       </div>
 
       <FiX className="banner-close" onClick={() => HideBanner()} />

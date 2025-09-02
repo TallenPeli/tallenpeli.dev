@@ -2,24 +2,6 @@ import { FiCoffee } from "react-icons/fi";
 import BlogCard from "./BlogCard";
 import "../../styles/components/features/BlogView.css";
 
-const BlogRows = ({ blogposts }) => {
-  if (!blogposts || blogposts.length === 0) return null;
-
-  const rows = [];
-  for (let i = 0; i < blogposts.length; i += 2) {
-    rows.push(
-      <div key={i} className="blog-row">
-        <BlogCard key={blogposts[i].url} blog={blogposts[i]} />
-        {blogposts[i + 1] && (
-          <BlogCard key={blogposts[i + 1].url} blog={blogposts[i + 1]} />
-        )}
-      </div>,
-    );
-  }
-
-  return <div className="blog-list">{rows}</div>;
-};
-
 const BlogView = ({ blogposts }) => {
   // Handle undefined or null blogposts
   if (!blogposts || !Array.isArray(blogposts)) {
@@ -37,7 +19,12 @@ const BlogView = ({ blogposts }) => {
         Latest Blog Posts
         <FiCoffee />
       </h1>
-      <BlogRows blogposts={blogposts} />
+
+      {blogposts.map((blogpost) => (
+        <div key={blogpost.id} className="blog-row">
+          <BlogCard key={blogpost.id} blog={blogpost} />
+        </div>
+      ))}
     </div>
   );
 };

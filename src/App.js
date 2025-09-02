@@ -6,10 +6,10 @@ import BlogPost from "./pages/BlogPost";
 
 import Banner from "./components/ui/Banner";
 
-const API_ENDPOINT = "https://api.tallenpeli.dev";
-//  process.env.NODE_ENV === "production"
-//    ? "https://api.tallenpeli.dev"
-//    : "http://192.:8080";
+const API_ENDPOINT =
+  process.env.NODE_ENV === "production"
+    ? "https://api.tallenpeli.dev"
+    : "http://localhost:8080";
 
 if (process.env.NODE_ENV === "production") {
   console.log("Production mode");
@@ -59,7 +59,7 @@ function App() {
 
   return (
     <Router>
-      {IS_PRODUCTION === true && <Banner />}
+      {IS_PRODUCTION && <Banner />}
       <Routes>
         <Route path="/" element={<Home API_ENDPOINT={API_ENDPOINT} />} />
         <Route path="/blog" element={<Blog API_ENDPOINT={API_ENDPOINT} />} />

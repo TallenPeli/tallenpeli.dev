@@ -1,30 +1,30 @@
 .banner {
-    position: sticky; /* Changed from static */
-    top: 0;
-    width: 100%;
-    display: flex;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    background-color: darkgoldenrod;
-    color: black;
-    align-items: center;
-    z-index: 1000; /* Ensure it stays on top */
-    justify-content: space-between;
+  position: sticky; /* Changed from static */
+  top: 0;
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: darkgoldenrod;
+  color: black;
+  align-items: center;
+  z-index: 1000; /* Ensure it stays on top */
+  justify-content: space-between;
 }
 
 .banner.hidden {
-    display: none;
+  display: none;
 }
 
 .banner-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-self: stretch;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  gap: 0.5rem;
 }
 
 .banner-close {
-    cursor: pointer;
-    align-self: right;
+  cursor: pointer;
+  align-self: right;
 }
