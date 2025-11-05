@@ -3,7 +3,6 @@ import "./App.css";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
-
 import Banner from "./components/ui/Banner";
 
 const API_ENDPOINT =

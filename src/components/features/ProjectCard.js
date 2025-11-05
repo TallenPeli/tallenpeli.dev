@@ -10,6 +10,11 @@ export default function ProjectCard({ project }) {
   return (
     <div className="project-card" onClick={() => window.open(url, "_blank")}>
       <div className="project-card-content">
+        <img
+          className="image"
+          src="https://tallenpeli.dev/images/avatar.avif"
+          alt={title}
+        />
         <div className="header">
           <h2>
             <a href={url}>{title}</a>

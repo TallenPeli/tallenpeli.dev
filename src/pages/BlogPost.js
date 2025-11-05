@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import TopBar from "../components/navigation/TopBar";
 
@@ -74,6 +74,31 @@ async function viewPost(postId, API_ENDPOINT, TOKEN) {
     },
   });
 }
+
+const OhterBlogPosts = ({ blogposts, currentBlogId }) => {
+  console.log(currentBlogId);
+  if (!blogposts || blogposts.length === 0) return null;
+
+  const rows = [];
+  for (let i = 0; i < blogposts.length; i++) {
+    if (blogposts[i].id === currentBlogId) continue;
+    rows.push(
+      <div key={i} className="blog-row">
+        <BlogCard key={blogposts[i].id} blog={blogposts[i]} />
+      </div>,
+    );
+  }
+
+  return (
+    <div className="blogpost__other-posts">
+      <h1>
+        Other Posts
+        <FiCoffee />
+      </h1>
+      <div className="blogpost__blog-list">{rows}</div>
+    </div>
+  );
+};
 
 const BlogPost = ({ API_ENDPOINT, TOKEN }) => {
   const { id } = useParams(); // This gets the {id} from the URL
@@ -208,28 +233,4 @@ const BlogPost = ({ API_ENDPOINT, TOKEN }) => {
   );
 };
 
-const OhterBlogPosts = ({ blogposts, currentBlogId }) => {
-  console.log(currentBlogId);
-  if (!blogposts || blogposts.length === 0) return null;
-
-  const rows = [];
-  for (let i = 0; i < blogposts.length; i++) {
-    if (blogposts[i].id === currentBlogId) continue;
-    rows.push(
-      <div key={i} className="blog-row">
-        <BlogCard key={blogposts[i].id} blog={blogposts[i]} />
-      </div>,
-    );
-  }
-
-  return (
-    <div className="blogpost__other-posts">
-      <h1>
-        Other Posts
-        <FiCoffee />
-      </h1>
-      <div className="blogpost__blog-list">{rows}</div>
-    </div>
-  );
-};
 export default BlogPost;

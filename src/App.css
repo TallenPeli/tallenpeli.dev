@@ -123,19 +123,20 @@ a {
 }
 
 .project-list {
-  padding: 1rem;
+  padding: 2rem;
   width: 100%;
   max-width: 50rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
 
 .project-row {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 1rem;

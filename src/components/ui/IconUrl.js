@@ -4,7 +4,7 @@ const IconUrl = ({ title, url, icon, iconSide }) => {
   const Selectable = url === "" ? "span" : "a";
   const props =
     url === ""
-      ? { className: "icon-url" }
+      ? { className: "icon-text" }
       : { href: url, className: "icon-url" };
 
   if (!title) {

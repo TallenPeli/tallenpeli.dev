@@ -1,49 +1,53 @@
 .project-card {
-    border-radius: 1rem;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-    padding: 1rem;
-    color: #fff;
-    cursor: pointer;
+  border-radius: 1rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+  transition:
+    transform 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+
+  .project-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--accent-color);
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    color: var(--accent-color);
+    padding: 0rem;
+  }
+
+  .image {
     width: 100%;
-    transition: transform 0.1s ease-in-out;
+    height: 8rem;
+    object-fit: cover;
+    border-radius: 0.6rem;
+  }
 
-    .project-card-content {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .header {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        color: var(--accent-color);
-    }
-
-    .footer {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.5rem;
-        color: var(--accent-color);
-        padding: 0rem;
-    }
-
-    .image {
-        height: 100%;
-        width: 100%;
-    }
-
-    .spaced {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
+  .spaced {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 .project-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7);
+  transform: scale(1.02);
+  box-shadow: 0px 0px 20px var(--accent-color);
 }

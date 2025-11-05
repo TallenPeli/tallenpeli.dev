@@ -14,7 +14,7 @@ import BuildInfo from "../build-info.json";
 
 import { FiHome, FiMail, FiGithub } from "react-icons/fi";
 
-const Blog = ({ API_ENDPOINT }) => {
+const Blog = ({ API_ENDPOINT, BuildInto }) => {
   const [blogpostData, setBlogpostData] = useState([]);
   const [latestBlogPost, setLatestBlogPost] = useState(null);
   const [healthData, setHealthData] = useState({ status: "no response" });
