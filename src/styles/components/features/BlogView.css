@@ -19,7 +19,7 @@
   .blog-row {
     width: 100%;
     max-width: 50rem;
-    padding: 2rem;
+    padding: 1rem;
     padding-bottom: 0rem;
     display: flex;
     flex-direction: column;

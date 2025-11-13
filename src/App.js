@@ -5,10 +5,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Banner from "./components/ui/Banner";
 
-const API_ENDPOINT =
-  process.env.NODE_ENV === "production"
-    ? "https://api.tallenpeli.dev"
-    : "http://localhost:8080";
+const API_ENDPOINT = "https://api.tallenpeli.dev";
 
 if (process.env.NODE_ENV === "production") {
   console.log("Production mode");
@@ -17,6 +14,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
+const SHOW_BANNER = false;
 
 // Use this for unique transactions, i.e. liking and viewing a post
 // returns a unique identifier for the browser
@@ -58,7 +56,7 @@ function App() {
 
   return (
     <Router>
-      {IS_PRODUCTION && <Banner />}
+      {SHOW_BANNER && <Banner />}
       <Routes>
         <Route path="/" element={<Home API_ENDPOINT={API_ENDPOINT} />} />
         <Route path="/blog" element={<Blog API_ENDPOINT={API_ENDPOINT} />} />

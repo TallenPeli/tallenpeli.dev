@@ -122,15 +122,21 @@ a {
   padding-bottom: 2rem;
 }
 
-.project-list {
-  padding: 2rem;
+.project-grid {
+  padding: 1rem;
   width: 100%;
+  grid-template-columns: 1fr 1fr;
   max-width: 50rem;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .project-row {

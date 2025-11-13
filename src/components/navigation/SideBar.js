@@ -54,7 +54,7 @@ const SideBar = ({ backendVersion, frontendVersion }) => {
           <Line />
           <IconUrl
             iconSide="left"
-            url="linkedin.com/in/tallen-pelissero-70715a255"
+            url="https://linkedin.com/in/tallen-pelissero-70715a255"
             title="LinkedIn"
             icon={<FiLinkedin />}
           />

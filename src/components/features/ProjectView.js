@@ -5,19 +5,13 @@ import ProjectCard from "./ProjectCard";
 const ProjectRows = ({ projects }) => {
   if (!projects || projects.length === 0) return null;
 
-  const rows = [];
-  for (let i = 0; i < projects.length; i += 2) {
-    rows.push(
-      <div key={i} className="project-row">
-        <ProjectCard key={projects[i].url} project={projects[i]} />
-        {projects[i + 1] && (
-          <ProjectCard key={projects[i + 1].url} project={projects[i + 1]} />
-        )}
-      </div>,
-    );
-  }
-
-  return <div className="project-list">{rows}</div>;
+  return (
+    <div className="project-grid">
+      {projects.map((project) => (
+        <ProjectCard key={project.url} project={project} />
+      ))}
+    </div>
+  );
 };
 
 const ProjectView = ({ projects }) => {
