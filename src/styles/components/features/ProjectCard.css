@@ -5,9 +5,7 @@
   color: #fff;
   cursor: pointer;
   width: 100%;
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out;
+  transition: transform 0.1s ease-in-out;
 
   .project-card-content {
     display: flex;
@@ -49,5 +47,4 @@
 
 .project-card:hover {
   transform: scale(1.02);
-  box-shadow: 0px 0px 20px var(--accent-color);
 }
